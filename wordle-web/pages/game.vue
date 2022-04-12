@@ -2,8 +2,8 @@
   <v-row>
     <v-col class="text-center">
       <v-card elevation="1">
-      Wordless
-        <footer>
+        <v-card-title>Wordless</v-card-title>
+        <v-card-text>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
             Suspendisse dolor ex, lobortis id dapibus feugiat, luctus 
             at ipsum. Nullam lacus tortor, malesuada eget urna id, 
@@ -12,10 +12,8 @@
             eu venenatis risus rutrum ac. Nulla facilisi. Nulla 
             facilisi. Mauris ac ullamcorper ex.
           </p>
-          <div>
-            <v-btn color="primary" nuxt to="/">Back to index</v-btn>
-          </div>
-        </footer>
+        </v-card-text>
+        <v-btn color="primary" nuxt to="/">Back to index</v-btn>
       </v-card>
     </v-col>
   </v-row>
