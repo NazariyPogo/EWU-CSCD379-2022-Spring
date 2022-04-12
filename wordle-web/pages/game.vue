@@ -1,12 +1,28 @@
 <template>
-    <v-row>
-        <v-card>
-
-        </v-card>
-        <v-btn color="primary" nuxt to="/index">Return to index</v-btn>
-    </v-row>
+  <v-row>
+    <v-col class="text-center">
+      <img src="/v.png" alt="Vuetify.js" class="mb-5" />
+      <blockquote class="blockquote">
+        &#8220;Wordless&#8221;
+        <footer>
+          <small>
+            <em>&mdash;Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+                pariatur. Excepteur sint occaecat cupidatat non proident, sunt 
+                in culpa qui officia deserunt mollit anim id est laborum.</em>
+          </small>
+          <v-btn color="primary" nuxt to="/index">Back to index</v-btn>
+        </footer>
+      </blockquote>
+    </v-col>
+  </v-row>
 </template>
 
-<script lang="ts">
-
+<script>
+export default {
+  name: 'InspirePage',
+}
 </script>
