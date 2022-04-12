@@ -2,7 +2,7 @@
   <v-row>
     <v-col class="text-center">
       <v-card elevation="1" shaped>
-        <v-card-title>Wordless</v-card-title>
+        <v-card-title>{{gameName}}</v-card-title>
         <v-card-text>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
             Suspendisse dolor ex, lobortis id dapibus feugiat, luctus 
@@ -22,8 +22,13 @@
 </template>
 
 <script lang="ts">
-export default class GamePage{
+import Vue from "vue"
+import Component from "vue-class-component"
+
+@Component
+export default class Game extends Vue{
   name: string = 'GamePage';
   returnButton: string = 'Back to index';
+  gameName: string = 'Wordless';
 }
 </script>
