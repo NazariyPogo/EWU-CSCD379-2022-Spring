@@ -23,6 +23,6 @@
 
 <script>
 export default {
-  name: 'InspirePage',
+  name: 'GamePage',
 }
 </script>
