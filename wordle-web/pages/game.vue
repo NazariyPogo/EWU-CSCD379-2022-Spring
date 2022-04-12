@@ -14,15 +14,16 @@
           </p>
         </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" nuxt to="/">Back to index</v-btn>
+          <v-btn color="primary" nuxt to="/">{{returnButton}}</v-btn>
         </v-card-actions>
       </v-card>
     </v-col>
   </v-row>
 </template>
 
-<script>
-export default {
-  name: 'GamePage',
+<script lang="ts">
+export default class GamePage{
+  name: string = 'GamePage';
+  returnButton: string = 'Back to index';
 }
 </script>

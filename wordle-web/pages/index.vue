@@ -73,7 +73,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn color="primary" nuxt to="/game"> Start Game! </v-btn>
+          <v-btn color="primary" nuxt to="/game"> {{buttonText}} </v-btn>
         </v-card-actions>
       </v-card>
     </v-col>
@@ -87,5 +87,6 @@ import Component from "vue-class-component"
 @Component
 export default class IndexPage extends Vue{
     name: string = 'IndexPage';
+    buttonText: string = "Play Game!";
 }
 </script>
