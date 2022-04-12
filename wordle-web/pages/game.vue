@@ -5,15 +5,13 @@
       <blockquote class="blockquote">
         &#8220;Wordless&#8221;
         <footer>
-          <small>
-            <em>&mdash;Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
-                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-                pariatur. Excepteur sint occaecat cupidatat non proident, sunt 
-                in culpa qui officia deserunt mollit anim id est laborum.</em>
-          </small>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Suspendisse dolor ex, lobortis id dapibus feugiat, luctus 
+                at ipsum. Nullam lacus tortor, malesuada eget urna id, 
+                posuere vulputate mi. Proin ut aliquet risus. Cras 
+                fermentum in mauris ac ornare. Etiam aliquam lacus quam, 
+                eu venenatis risus rutrum ac. Nulla facilisi. Nulla 
+                facilisi. Mauris ac ullamcorper ex.</p>
           <v-btn color="primary" nuxt to="/index">Back to index</v-btn>
         </footer>
       </blockquote>
