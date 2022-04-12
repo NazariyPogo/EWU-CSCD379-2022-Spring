@@ -2,7 +2,7 @@
   <v-row>
     <v-col class="text-center">
       <v-card elevation="1">
-      &#8220;Wordless&#8221;
+      Wordless
         <footer>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
             Suspendisse dolor ex, lobortis id dapibus feugiat, luctus 

@@ -1,5 +1,6 @@
 # wordle-web
-
+Link
+https://lemon-ground-09e5fcf1e.1.azurestaticapps.net
 ## Build Setup
 
 ```bash
