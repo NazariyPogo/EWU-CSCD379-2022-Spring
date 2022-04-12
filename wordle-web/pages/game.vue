@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col class="text-center">
-      <v-card elevation="1">
+      <v-card elevation="1" shaped>
         <v-card-title>Wordless</v-card-title>
         <v-card-text>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
@@ -13,7 +13,9 @@
             facilisi. Mauris ac ullamcorper ex.
           </p>
         </v-card-text>
-        <v-btn color="primary" nuxt to="/">Back to index</v-btn>
+        <v-card-actions>
+          <v-btn color="primary" nuxt to="/">Back to index</v-btn>
+        </v-card-actions>
       </v-card>
     </v-col>
   </v-row>
