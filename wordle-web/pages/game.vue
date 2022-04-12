@@ -26,7 +26,7 @@ import Vue from "vue"
 import Component from "vue-class-component"
 
 @Component
-export default class Game extends Vue{
+export default class GamePage extends Vue{
   name: string = 'GamePage';
   returnButton: string = 'Back to index';
   gameName: string = 'Wordless';
