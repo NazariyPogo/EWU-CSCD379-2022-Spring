@@ -1,9 +1,8 @@
 <template>
   <v-row>
     <v-col class="text-center">
-      <img src="/v.png" alt="Vuetify.js" class="mb-5" />
-      <blockquote class="blockquote">
-        &#8220;Wordless&#8221;
+      <v-card elevation="1">
+      &#8220;Wordless&#8221;
         <footer>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
             Suspendisse dolor ex, lobortis id dapibus feugiat, luctus 
@@ -17,7 +16,7 @@
             <v-btn color="primary" nuxt to="/">Back to index</v-btn>
           </div>
         </footer>
-      </blockquote>
+      </v-card>
     </v-col>
   </v-row>
 </template>
