@@ -1,34 +1,63 @@
 <template>
-  <v-row>
-    <v-col class="text-center">
-      <v-card elevation="1" shaped>
-        <v-card-title>{{gameName}}</v-card-title>
-        <v-card-text>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Suspendisse dolor ex, lobortis id dapibus feugiat, luctus 
-            at ipsum. Nullam lacus tortor, malesuada eget urna id, 
-            posuere vulputate mi. Proin ut aliquet risus. Cras 
-            fermentum in mauris ac ornare. Etiam aliquam lacus quam, 
-            eu venenatis risus rutrum ac. Nulla facilisi. Nulla 
-            facilisi. Mauris ac ullamcorper ex.
-          </p>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn color="primary" nuxt to="/">{{returnButton}}</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
+  <v-container fluid fill-height justify-center>
+    <v-tooltip bottom>
+      <template #activator="{ on, attrs }">
+        <v-btn color="primary" nuxt to="/" fab v-bind="attrs" v-on="on">
+          <v-icon> mdi-home </v-icon>
+        </v-btn>
+      </template>
+      <span> Go Home </span>
+    </v-tooltip>
+
+    <v-card-text class="text-h1 font-weight-black text-center">
+      Wordle!
+    </v-card-text>
+
+    <v-alert v-if="wordleGame.gameOver" width="80%" :type="gameResult.type">
+      {{ gameResult.text }}
+      <v-btn class="ml-2" @click="resetGame"> Play Again? </v-btn>
+    </v-alert>
+
+    <game-board :wordleGame="wordleGame" />
+
+    <keyboard :wordleGame="wordleGame" />
+  </v-container>
 </template>
 
 <script lang="ts">
-import Vue from "vue"
-import Component from "vue-class-component"
+import { Component, Vue } from 'vue-property-decorator'
+import { WordsService } from '~/scripts/wordsService'
+import { GameState, WordleGame } from '~/scripts/wordleGame'
+import KeyBoard from '@/components/keyboard.vue'
+import GameBoard from '@/components/game-board.vue'
+import { Word } from '~/scripts/word'
 
-@Component
-export default class GamePage extends Vue{
-  name: string = 'GamePage';
-  returnButton: string = 'Back to index';
-  gameName: string = 'Wordless';
+@Component({ components: { KeyBoard, GameBoard } })
+export default class Game extends Vue {
+  word: string = WordsService.getRandomWord()
+  wordleGame = new WordleGame(this.word)
+
+  resetGame() {
+    this.word = WordsService.getRandomWord()
+    this.wordleGame = new WordleGame(this.word)
+  }
+
+  get gameResult() {
+    if (this.wordleGame.state === GameState.Won) {
+      return { type: 'success', text: 'Yay! You won!' }
+    }
+    if (this.wordleGame.state === GameState.Lost) {
+      return { type: 'error', text: `You lost... :( The word was ${this.word}` }
+    }
+    return { type: '', text: '' }
+  }
+
+  getLetter(row: number, index: number) {
+    const word: Word = this.wordleGame.words[row - 1]
+    if (word !== undefined) {
+      return word.letters[index - 1]?.char ?? ''
+    }
+    return ''
+  }
 }
 </script>
