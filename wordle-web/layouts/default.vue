@@ -5,6 +5,19 @@
         Wordle
       </router-link>
       <v-spacer />
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            to="/about"
+            v-bind="attrs"
+            v-on="on">
+            <v-icon>
+              mdi-account
+            </v-icon>
+          </v-btn>
+        </template>
+        <span>About Us</span>
+      </v-tooltip>
       <settings-dialog />
     </v-app-bar>
     <v-main>
