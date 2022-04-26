@@ -39,8 +39,11 @@
                   <v-list-item @click="purpleTheme">
                     <v-list-item-title> Purple </v-list-item-title>
                   </v-list-item>
-                  <v-list-item @click="blueishTheme">
-                    <v-list-item-title> Blueish </v-list-item-title>
+                  <v-list-item @click="autumnTheme">
+                    <v-list-item-title> Autumn </v-list-item-title>
+                  </v-list-item>
+                  <v-list-item @click="oldTheme">
+                    <v-list-item-title> Old </v-list-item-title>
                   </v-list-item>
                 </v-list-item-group>
               </v-list>
@@ -100,6 +103,34 @@ export default class SettingsDialog extends Vue {
 
     this.$vuetify.theme.themes.dark = autumnTheme
     this.$vuetify.theme.themes.light = autumnTheme
+  }
+
+  oldTheme() {
+        const oldThemeDark = {
+      primary: '#9e9e9e',
+      secondary: '#757575',
+      accent: '#e0e0e0',
+      error: '#212121',
+      warning: '#757575',
+      info: '#eeeeee',
+      success: '#e0e0e0'
+    }
+
+            const oldThemeLight = {
+      primary: '#9e9e9e',
+      secondary: '#757575',
+      accent: '#e0e0e0',
+      error: '#616161',
+      warning: '#bdbdbd',
+      info: '#eeeeee',
+      success: '#fafafa'
+    }
+    if(this.$vuetify.theme.dark === true) {
+      this.$vuetify.theme.themes.dark = oldThemeDark
+    }
+    else {
+      this.$vuetify.theme.themes.light = oldThemeLight
+    }
   }
 }
 </script>
