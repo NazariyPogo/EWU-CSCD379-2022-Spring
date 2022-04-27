@@ -20,7 +20,6 @@
     >
       Guess
     </v-btn>
-    <wordList />
     <v-btn
       :disabled="wordleGame.gameOver"
       icon
@@ -79,8 +78,5 @@ export default class KeyBoard extends Vue {
     return Letter.getColorCode(LetterStatus.Unknown)
   }
 
-  displayHint() {
-
-  }
 }
 </script>
