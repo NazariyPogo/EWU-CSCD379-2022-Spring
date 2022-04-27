@@ -6,7 +6,7 @@ export abstract class WordsService {
   static validWords(guessedWord: string): string[] {
     let possibleWords: string[] = [];
     guessedWord = guessedWord.replaceAll('?', '.');
-    const regex = new RegExp(guessedWord);;
+    const regex = new RegExp(guessedWord);
 
     this.#words.forEach(element => {
       if(element.match(regex)) {
