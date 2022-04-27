@@ -11,4 +11,10 @@ describe('Word Service', () => {
   test('Words are private', () => {
     expect((WordsService as any).words).toBeUndefined()
   })
+
+  test('Valid words match specific entry', () => {
+    expect(WordsService.validWords("acorn").length).toBe(1);
+    expect(WordsService.validWords("bi???").length).toBe(9);
+    expect(WordsService.validWords("a???n").length).toBe(4);
+  })
 })

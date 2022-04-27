@@ -3,6 +3,19 @@ export abstract class WordsService {
     return this.#words[Math.floor(Math.random() * this.#words.length)]
   }
 
+  static validWords(guessedWord: string): string[] {
+    let possibleWords: string[] = [];
+    guessedWord = guessedWord.replaceAll('?', '.');
+    const regex = new RegExp(guessedWord);;
+
+    this.#words.forEach(element => {
+      if(element.match(regex)) {
+        possibleWords.push(element);
+      }
+    });
+    return possibleWords;
+  }
+
   // From: https://github.com/kashapov/react-testing-projects/blob/master/random-word-server/five-letter-words.json
   static readonly #words: string[] = [
     'acorn',
