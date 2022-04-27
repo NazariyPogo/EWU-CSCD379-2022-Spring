@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn @click="toggleDialog()" :disabled="wordleGame.gameOver">
+    <v-btn :disabled="wordleGame.gameOver" @click="toggleDialog()">
       {{ listLength() }}
     </v-btn>
 
@@ -11,13 +11,13 @@
 
           <v-card-text>
             <v-virtual-scroll
-              :items="wordsService.validWords(this.wordleGame.currentWord.text)"
               v-if="dialog"
+              :items="wordsService.validWords(wordleGame.currentWord.text)"
               height="300"
               width="150"
               item-height="64"
             >
-              <template v-slot:default="{ item }">
+              <template #default="{ item }">
                 <v-list-item :key="item">
                   <v-list-item-action>
                     <v-btn depressed color="primary" @click="setWord(item)">
@@ -58,10 +58,10 @@ export default class WordList extends Vue {
   }
 
   setWord(item: string) {
-    for(let i = 0; i < 5; i++) {
+    for (let i = 0; i < 5; i++) {
       this.wordleGame.currentWord.removeLetter()
     }
-    for(let i = 0; i < 5; i++) {
+    for (let i = 0; i < 5; i++) {
       this.wordleGame.currentWord.addLetter(item[i])
     }
   }

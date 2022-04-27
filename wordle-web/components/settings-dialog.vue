@@ -98,7 +98,7 @@ export default class SettingsDialog extends Vue {
       error: '#e91e63',
       warning: '#ff9800',
       info: '#9c27b0',
-      success: '#8bc34a'
+      success: '#8bc34a',
     }
 
     this.$vuetify.theme.themes.dark = autumnTheme
@@ -106,29 +106,28 @@ export default class SettingsDialog extends Vue {
   }
 
   oldTheme() {
-        const oldThemeDark = {
+    const oldThemeDark = {
       primary: '#9e9e9e',
       secondary: '#757575',
       accent: '#e0e0e0',
       error: '#212121',
       warning: '#757575',
       info: '#eeeeee',
-      success: '#e0e0e0'
+      success: '#e0e0e0',
     }
 
-            const oldThemeLight = {
+    const oldThemeLight = {
       primary: '#9e9e9e',
       secondary: '#757575',
       accent: '#e0e0e0',
       error: '#616161',
       warning: '#bdbdbd',
       info: '#eeeeee',
-      success: '#fafafa'
+      success: '#fafafa',
     }
-    if(this.$vuetify.theme.dark === true) {
+    if (this.$vuetify.theme.dark === true) {
       this.$vuetify.theme.themes.dark = oldThemeDark
-    }
-    else {
+    } else {
       this.$vuetify.theme.themes.light = oldThemeLight
     }
   }

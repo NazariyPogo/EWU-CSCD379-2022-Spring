@@ -4,18 +4,18 @@ export abstract class WordsService {
   }
 
   static validWords(guessedWord: string): string[] {
-    let possibleWords: string[] = [];
-    while(guessedWord.includes("?")) {
-      guessedWord = guessedWord.replace('?', '.');
+    const possibleWords: string[] = []
+    while (guessedWord.includes('?')) {
+      guessedWord = guessedWord.replace('?', '.')
     }
-    const regex = new RegExp(guessedWord);
+    const regex = new RegExp(guessedWord)
 
-    this.#words.forEach(element => {
-      if(element.match(regex)) {
-        possibleWords.push(element);
+    this.#words.forEach((element) => {
+      if (element.match(regex)) {
+        possibleWords.push(element)
       }
-    });
-    return possibleWords;
+    })
+    return possibleWords
   }
 
   // From: https://github.com/kashapov/react-testing-projects/blob/master/random-word-server/five-letter-words.json

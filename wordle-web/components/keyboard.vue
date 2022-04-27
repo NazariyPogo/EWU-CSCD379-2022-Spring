@@ -77,6 +77,5 @@ export default class KeyBoard extends Vue {
 
     return Letter.getColorCode(LetterStatus.Unknown)
   }
-
 }
 </script>

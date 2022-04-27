@@ -13,8 +13,8 @@ describe('Word Service', () => {
   })
 
   test('Valid words match specific entry', () => {
-    expect(WordsService.validWords("acorn").length).toBe(1);
-    expect(WordsService.validWords("bi???").length).toBe(9);
-    expect(WordsService.validWords("a???n").length).not.toBe(5); //Actual value is 4
+    expect(WordsService.validWords('acorn').length).toBe(1)
+    expect(WordsService.validWords('bi???').length).toBe(9)
+    expect(WordsService.validWords('a???n').length).not.toBe(5) // Actual value is 4
   })
 })
