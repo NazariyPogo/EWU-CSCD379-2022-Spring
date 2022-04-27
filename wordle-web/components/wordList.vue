@@ -9,9 +9,8 @@
         <v-container>
           <v-card-title> All Possible Words </v-card-title>
           <v-card-text>
-            <v-virtual-scroll height="175" item-height="20"> 
-              
-            </v-virtual-scroll>
+            <v-card elevation="16" max-width="400" class="mx-auto">
+            </v-card>
           </v-card-text>
         </v-container>
       </v-card>
@@ -33,5 +32,6 @@ export default class WordList extends Vue {
   toggleDialog() {
     this.dialog = !this.dialog
   }
+  
 }
 </script>
