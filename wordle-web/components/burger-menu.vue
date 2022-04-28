@@ -1,8 +1,8 @@
 <template>
   <v-card>
-    <v-menu offset-y>
+    <v-menu offset-y open-on-hover>
       <template v-slot:activator="{ on, attrs }">
-        <v-btn dark v-bind="attrs" v-on="on">
+        <v-btn icon v-bind="attrs" v-on="on">
           <v-icon> mdi-hamburger </v-icon>
         </v-btn>
       </template>
@@ -14,15 +14,13 @@
         </template>
         <span>About Us</span>
       </v-tooltip>
-      <settings-dialog />
     </v-menu>
   </v-card>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import SettingsDialog from '@/components/settings-dialog.vue'
 
-@Component({ components: { SettingsDialog } })
+@Component({ components: {  } })
 export default class BurgerMenu extends Vue {}
 </script>
