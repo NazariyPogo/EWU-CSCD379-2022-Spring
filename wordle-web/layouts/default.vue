@@ -6,15 +6,8 @@
         <v-icon> mdi-penguin </v-icon>
       </router-link>
       <v-spacer />
-      <v-tooltip bottom>
-        <template #activator="{ on, attrs }">
-          <v-btn to="/about-us" v-bind="attrs" v-on="on">
-            <v-icon> mdi-account </v-icon>
-          </v-btn>
-        </template>
-        <span>About Us</span>
-      </v-tooltip>
       <settings-dialog />
+      <burger-menu />
     </v-app-bar>
     <v-main>
       <v-container>
@@ -30,8 +23,9 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import SettingsDialog from '@/components/settings-dialog.vue'
+import BurgerMenu from '@/components/burger-menu.vue'
 
-@Component({ components: { SettingsDialog } })
+@Component({ components: { BurgerMenu, SettingsDialog } })
 export default class DefaultLayout extends Vue {}
 </script>
 

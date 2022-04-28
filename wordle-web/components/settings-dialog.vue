@@ -1,8 +1,13 @@
 <template>
   <div>
-    <v-btn icon @click="toggleDialog">
-      <v-icon> mdi-cog </v-icon>
-    </v-btn>
+    <v-tooltip left>
+      <template #activator="{ on, attrs }">
+        <v-btn icon @click="toggleDialog" v-bind="attrs" v-on="on">
+          <v-icon> mdi-cog </v-icon>
+        </v-btn>
+      </template>
+      <span>Settings</span>
+    </v-tooltip>
 
     <v-dialog v-model="dialog" width="450">
       <v-card>
