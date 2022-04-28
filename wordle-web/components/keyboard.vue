@@ -1,5 +1,18 @@
 <template>
-  <v-card class="my-5 pa-5" style="background-image: conic-gradient(red, orange , yellow, green, cyan, blue, violet);">
+  <v-card
+    class="my-5 pa-5"
+    style="
+      background-image: conic-gradient(
+        red,
+        orange,
+        yellow,
+        green,
+        cyan,
+        blue,
+        violet
+      );
+    "
+  >
     <v-row v-for="(charRow, i) in chars" :key="i" no-gutters justify="center">
       <v-col v-for="char in charRow" :key="char" cols="1">
         <v-container class="text-center">

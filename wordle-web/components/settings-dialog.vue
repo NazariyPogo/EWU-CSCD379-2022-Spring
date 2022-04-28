@@ -2,7 +2,7 @@
   <div>
     <v-tooltip left>
       <template #activator="{ on, attrs }">
-        <v-btn icon @click="toggleDialog" v-bind="attrs" v-on="on">
+        <v-btn icon v-bind="attrs" @click="toggleDialog" v-on="on">
           <v-icon> mdi-cog </v-icon>
         </v-btn>
       </template>

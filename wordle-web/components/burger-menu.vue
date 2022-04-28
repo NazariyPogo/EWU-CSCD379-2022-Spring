@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-menu offset-y open-on-hover>
-      <template v-slot:activator="{ on, attrs }">
+      <template #activator="{ on, attrs }">
         <v-btn icon v-bind="attrs" v-on="on">
           <v-icon> mdi-hamburger </v-icon>
         </v-btn>
@@ -21,6 +21,6 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 
-@Component({ components: {  } })
+@Component({ components: {} })
 export default class BurgerMenu extends Vue {}
 </script>
