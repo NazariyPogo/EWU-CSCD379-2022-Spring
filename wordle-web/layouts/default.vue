@@ -3,6 +3,7 @@
     <v-app-bar fixed app>
       <router-link to="/" class="text-h4 font-weight-black no-decoration">
         Wordle
+        <v-icon> mdi-penguin </v-icon>
       </router-link>
       <v-spacer />
       <v-tooltip bottom>
