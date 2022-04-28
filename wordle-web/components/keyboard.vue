@@ -20,6 +20,7 @@
     >
       Guess
     </v-btn>
+    <wordList :wordleGame="wordleGame" />
     <v-btn
       :disabled="wordleGame.gameOver"
       icon
