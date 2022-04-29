@@ -1,18 +1,6 @@
 <template>
   <v-card width="450">
-    <v-container
-      style="
-        background-image: conic-gradient(
-          red,
-          orange,
-          yellow,
-          green,
-          cyan,
-          blue,
-          violet
-        );
-      "
-    >
+    <v-container id="gameboard_container" class="fancy_gradient">
       <v-row v-for="row in wordleGame.maxGuesses" :key="row" dense>
         <v-col v-for="index in wordleGame.currentWord.maxLetters" :key="index">
           <v-card height="50" :color="letterColor(getLetter(row, index))">

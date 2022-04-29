@@ -2,3 +2,15 @@
 //
 // The variables you want to modify
 // $font-size-root: 20px;
+
+.fancy_gradient {
+  background-image: conic-gradient(
+    red,
+    orange,
+    yellow,
+    green,
+    cyan,
+    blue,
+    violet
+  );
+}
