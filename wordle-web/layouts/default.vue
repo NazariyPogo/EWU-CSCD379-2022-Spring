@@ -8,6 +8,9 @@
         </v-btn>
       </v-toolbar-title>
       <v-spacer />
+      <v-btn>
+        <UserDialog />
+      </v-btn>
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
@@ -43,6 +46,7 @@
             <SettingsDialog />
           </v-btn>
         </v-list-item>
+
       </v-list>
     </v-navigation-drawer>
     <v-footer app>
