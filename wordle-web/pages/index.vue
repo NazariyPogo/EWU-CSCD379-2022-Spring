@@ -15,6 +15,11 @@
                 Play
               </v-btn>
             </v-card-actions>
+            <v-card-actions class="justify-center">
+              <v-btn nuxt to="/ScoreStats" color="primary" x-large width="300px">
+                High Scores
+              </v-btn>
+            </v-card-actions>
           </v-card>
         </v-card>
       </v-col>
