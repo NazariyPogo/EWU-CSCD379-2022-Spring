@@ -11,7 +11,7 @@
 
           <v-card-text>
             <v-text-field v-model="name" label="User" />
-            <v-btn color="primary" @click="changeName" dark v-bind="attrs" v-on="on">
+            <v-btn color="primary" @click="changeName" dark>
               Save
             </v-btn>
           </v-card-text>

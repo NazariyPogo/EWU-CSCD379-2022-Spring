@@ -24,6 +24,10 @@
                 score.AverageGuesses = ((score.NumberGames * score.AverageGuesses)
                     + gameScore.Score) / ++score.NumberGames;
             }
+            else
+            {
+                _scores.Add(new Score(gameScore.Name, 0, gameScore.Score));
+            }
         }
 
         public IEnumerable<Score> GetScores()

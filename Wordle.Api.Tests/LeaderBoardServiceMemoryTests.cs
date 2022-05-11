@@ -8,13 +8,6 @@ namespace Wordle.Api.Tests
     public class LeaderBoardServiceMemoryTests
     {
         [TestMethod]
-        public void GetScores()
-        {
-            LeaderBoardServiceMemory sut = new LeaderBoardServiceMemory();
-            Assert.AreEqual(3, sut.GetScores().Count());
-        }
-        [Ignore("Make the code make this work!")]
-        [TestMethod]
         public void AddScore_AddsNewPlayer()
         {
             LeaderBoardServiceMemory sut = new LeaderBoardServiceMemory();
@@ -28,6 +21,13 @@ namespace Wordle.Api.Tests
             LeaderBoardServiceMemory sut = new LeaderBoardServiceMemory();
             sut.AddScore(new GameScore(5, "Ralph"));
             Assert.AreEqual(31, sut.GetScores().First(x => x.Name == "Ralph").NumberGames);
+        }
+
+        [TestMethod]
+        public void GetScores()
+        {
+            LeaderBoardServiceMemory sut = new LeaderBoardServiceMemory();
+            Assert.AreEqual(4, sut.GetScores().Count());
         }
 
 
