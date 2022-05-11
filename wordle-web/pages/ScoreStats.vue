@@ -23,7 +23,7 @@
           <tbody>
             <tr v-for="(stat, index) in stats" :key="index">
               <td>{{ stat.score }}</td>
-              <td>{{ stat.averageSeconds }}</td>
+              <td>{{ stat.name }}</td>
             </tr>
           </tbody>
         </v-simple-table>

@@ -4,30 +4,33 @@
 
 namespace Wordle.Api.Migrations
 {
-    public partial class ScoreStat : Migration
+    public partial class Player : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "ScoreStats");
+
             migrationBuilder.CreateTable(
-                name: "ScoreStats",
+                name: "Players",
                 columns: table => new
                 {
-                    ScoreStatId = table.Column<int>(type: "int", nullable: false)
+                    PlayerId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Score = table.Column<int>(type: "int", nullable: false),
-                    AverageSeconds = table.Column<int>(type: "int", nullable: false),
-                    TotalGames = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GameCount = table.Column<int>(type: "int", nullable: false),
+                    AverageAttempts = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ScoreStats", x => x.ScoreStatId);
+                    table.PrimaryKey("PK_Players", x => x.PlayerId);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ScoreStats");
+                name: "Players");
         }
     }
 }
