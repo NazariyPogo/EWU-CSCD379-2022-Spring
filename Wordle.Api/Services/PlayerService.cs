@@ -29,7 +29,7 @@ namespace Wordle.Api.Services
             {
                 throw new ArgumentException("Score must be between 1 and 6, and the admin password is 'password123''");
             }
-            var player = _context.Players.First(x => x.Name == name);
+            var player = _context.Players.FirstOrDefault(x => x.Name == name);
 
             if (player is not null)
             {
