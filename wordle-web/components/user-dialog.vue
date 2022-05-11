@@ -1,7 +1,7 @@
 <template>
   <div class>
     <v-container @click="toggleDialog">
-      {{newName}}
+      {{ newName }}
     </v-container>
 
     <v-dialog v-model="dialog" width="450">
@@ -11,9 +11,7 @@
 
           <v-card-text>
             <v-text-field v-model="name" label="User" />
-            <v-btn color="primary" @click="changeName" dark>
-              Save
-            </v-btn>
+            <v-btn color="primary" dark @click="changeName"> Save </v-btn>
           </v-card-text>
         </v-container>
       </v-card>
@@ -27,17 +25,16 @@ import { Vue, Component } from 'vue-property-decorator'
 @Component({})
 export default class SettingsDialog extends Vue {
   dialog = false
-  name = "Guest"
-  newName = localStorage.getItem("newName")
+  name = 'Guest'
+  newName = localStorage.getItem('newName')
 
   toggleDialog() {
     this.dialog = !this.dialog
   }
 
   changeName() {
-    localStorage.setItem("newName", this.name)
-    this.newName = localStorage.getItem("newName")
+    localStorage.setItem('newName', this.name)
+    this.newName = localStorage.getItem('newName')
   }
-
 }
 </script>

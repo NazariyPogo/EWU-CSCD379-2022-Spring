@@ -46,7 +46,6 @@
             <SettingsDialog />
           </v-btn>
         </v-list-item>
-
       </v-list>
     </v-navigation-drawer>
     <v-footer app>

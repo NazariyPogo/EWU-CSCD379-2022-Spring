@@ -16,20 +16,22 @@
         <v-simple-table>
           <thead>
             <tr>
-              <th>Score</th>
-              <th>Avg. Seconds</th>
+              <th>Name</th>
+              <th>Game Count</th>
+              <th>Average Attempts</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(stat, index) in stats" :key="index">
-              <td>{{ stat.score }}</td>
-              <td>{{ stat.name }}</td>
+            <tr v-for="(player, index) in players" :key="index">
+              <td>{{ player.name }}</td>
+              <td>{{ player.gameCount }}</td>
+              <td>{{ player.averageAttempts }}</td>
             </tr>
           </tbody>
         </v-simple-table>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="primary" @click="refreshStats"> Refresh </v-btn>
+        <v-btn color="primary" @click="refreshPlayers"> Refresh </v-btn>
       </v-card-actions>
     </v-card>
   </v-container>
@@ -39,12 +41,12 @@
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component({})
-export default class ScoreStats extends Vue {
-  stats: any = []
+export default class Players extends Vue {
+  players: any = []
 
-  refreshStats() {
-    this.$axios.get('/api/ScoreStats').then((response) => {
-      this.stats = response.data
+  refreshPlayers() {
+    this.$axios.get('/api/Player').then((response) => {
+      this.players = response.data
     })
   }
 }
