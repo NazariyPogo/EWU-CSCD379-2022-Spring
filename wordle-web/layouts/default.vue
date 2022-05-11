@@ -42,9 +42,9 @@
         </v-list-item>
 
         <v-list-item>
-          <v-btn text block>
-            <SettingsDialog />
-          </v-btn>
+          <v-btn text block nuxt to="/ScoreStats">
+            Leaderboard <v-icon>mdi-crown</v-icon></v-btn
+          >
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
