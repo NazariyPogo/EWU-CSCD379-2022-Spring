@@ -10,7 +10,7 @@ namespace Wordle.Api.Tests
     [TestClass]
     public class PlayerServiceTests
     {
-        private AppDbContext _context;
+        private readonly AppDbContext _context;
 
         public PlayerServiceTests()
         {
@@ -24,7 +24,7 @@ namespace Wordle.Api.Tests
         [TestMethod]
         public void GetPlayers()
         {
-            PlayerService sut = new PlayerService(_context);
+            PlayerService sut = new(_context);
 
             Assert.AreEqual(1, sut.GetPlayers().Count());
         }

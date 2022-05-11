@@ -10,7 +10,7 @@ namespace Wordle.Api.Services
 
         }
 
-        private AppDbContext _context;
+        private readonly AppDbContext _context;
 
         public IEnumerable<Player> GetTenPlayers()
         {
@@ -23,7 +23,7 @@ namespace Wordle.Api.Services
             return result;
         }
 
-        public void Update(string name, int score)
+        public void Update(string? name, int score)
         {
             if (score < 1 || score > 6)
             {

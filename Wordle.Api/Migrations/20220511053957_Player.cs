@@ -8,9 +8,6 @@ namespace Wordle.Api.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "ScoreStats");
-
             migrationBuilder.CreateTable(
                 name: "Players",
                 columns: table => new

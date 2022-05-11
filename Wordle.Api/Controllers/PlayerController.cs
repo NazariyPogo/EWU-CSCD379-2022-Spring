@@ -30,7 +30,7 @@ namespace Wordle.Api.Controllers
         }
         public class PlayerPost
         {
-            public string Name { get; set; }
+            public string? Name { get; set; }
             public int Score { get; set; }
         }
     }
