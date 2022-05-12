@@ -12,7 +12,6 @@
     </v-container>
 
     <v-container v-if="isLoaded">
-      <p>{{ this.wordleGame.word }}</p>
       <v-row justify="end">
         <v-btn>
           <v-container @click="toggleDialog">
@@ -73,11 +72,13 @@
       <v-row justify="center" class="mt-10">
         <v-alert v-if="wordleGame.gameOver" width="80%" :type="gameResult.type">
           {{ gameResult.text }}
-          <v-btn class="ml-2" @click="resetGame" color="primary"> Play Again? </v-btn>
-          <v-btn @click="checkForName()" color="primary" :disabled="saved">
+          <v-btn class="ml-2" color="primary" @click="resetGame">
+            Play Again?
+          </v-btn>
+          <v-btn color="primary" :disabled="saved" @click="checkForName()">
             Save Score?
           </v-btn>
-          <v-btn @click="areYouSure()" color="primary" :disabled="unsure">
+          <v-btn color="primary" :disabled="unsure" @click="areYouSure()">
             Are you sure?
           </v-btn>
         </v-alert>
@@ -168,26 +169,19 @@ export default class Game extends Vue {
     }
   }
 
-  areYouSure(){
+  areYouSure() {
     this.savePlayerStats()
     this.toggleUnsure()
   }
 
   savePlayerStats() {
-    this.$axios
-      .post('/api/Player', {
-        Name: this.newName,
-        Score: this.wordleGame.words.length,
-      })
-      .then(function (response) {
-        console.log(response)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+    this.$axios.post('/api/Player', {
+      Name: this.newName,
+      Score: this.wordleGame.words.length,
+    })
   }
 
-  toggleUnsure(){
+  toggleUnsure() {
     this.unsure = !this.unsure
   }
 }

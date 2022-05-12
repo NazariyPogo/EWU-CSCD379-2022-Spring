@@ -26,7 +26,7 @@ namespace Wordle.Api.Tests
         {
             PlayerService sut = new(_context);
 
-            Assert.AreEqual(1, sut.GetPlayers().Count());
+            Assert.AreEqual(1, sut.GetTenPlayers().Count());
         }
     }
 }
