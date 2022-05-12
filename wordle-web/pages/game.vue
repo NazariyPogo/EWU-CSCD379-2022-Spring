@@ -11,7 +11,7 @@
       </v-row>
     </v-container>
 
-    <v-container v-if="isLoaded">
+  <v-container v-if="isLoaded">
       <v-row justify="end">
         <v-btn>
           <v-container @click="toggleDialog">
@@ -24,7 +24,7 @@
                 <v-card-title>User</v-card-title>
 
                 <v-card-text>
-                  <v-text-field v-model="name" label="User" />
+                  <v-text-field v-model="newName" label="User" />
                   <v-btn color="primary" dark @click="changeName"> Save </v-btn>
                 </v-card-text>
               </v-container>
@@ -108,8 +108,7 @@ export default class Game extends Vue {
   wordleGame = new WordleGame(this.word)
 
   dialog = false
-  name = 'Guest'
-  newName = localStorage.getItem('newName')
+  newName = localStorage.getItem('newName') ?? 'Guest'
   saved = false
   unsure = true
 
@@ -154,8 +153,7 @@ export default class Game extends Vue {
   }
 
   changeName() {
-    localStorage.setItem('newName', this.name)
-    this.newName = localStorage.getItem('newName')
+    localStorage.setItem('newName', this.newName)
     this.toggleDialog()
   }
 
