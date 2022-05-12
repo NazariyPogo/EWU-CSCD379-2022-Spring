@@ -12,6 +12,27 @@
     </v-container>
 
     <v-container v-if="isLoaded">
+      <p>{{ this.wordleGame.word }}</p>
+      <v-row justify="end">
+        <v-btn>
+          <v-container @click="toggleDialog">
+            {{ newName }}
+          </v-container>
+
+          <v-dialog v-model="dialog" width="450" persistent>
+            <v-card>
+              <v-container>
+                <v-card-title>User</v-card-title>
+
+                <v-card-text>
+                  <v-text-field v-model="name" label="User" />
+                  <v-btn color="primary" dark @click="changeName"> Save </v-btn>
+                </v-card-text>
+              </v-container>
+            </v-card>
+          </v-dialog>
+        </v-btn>
+      </v-row>
       <v-row justify="center">
         <v-col cols="1" class="mt-0 mb-0 pt-0 pb-0">
           <v-tooltip bottom>
@@ -52,7 +73,13 @@
       <v-row justify="center" class="mt-10">
         <v-alert v-if="wordleGame.gameOver" width="80%" :type="gameResult.type">
           {{ gameResult.text }}
-          <v-btn class="ml-2" @click="resetGame"> Play Again? </v-btn>
+          <v-btn class="ml-2" @click="resetGame" color="primary"> Play Again? </v-btn>
+          <v-btn @click="checkForName()" color="primary" :disabled="saved">
+            Save Score?
+          </v-btn>
+          <v-btn @click="areYouSure()" color="primary" :disabled="unsure">
+            Are you sure?
+          </v-btn>
         </v-alert>
       </v-row>
 
@@ -79,6 +106,12 @@ export default class Game extends Vue {
   word: string = WordsService.getRandomWord()
   wordleGame = new WordleGame(this.word)
 
+  dialog = false
+  name = 'Guest'
+  newName = localStorage.getItem('newName')
+  saved = false
+  unsure = true
+
   isLoaded: boolean = false
 
   mounted() {
@@ -90,6 +123,8 @@ export default class Game extends Vue {
   resetGame() {
     this.word = WordsService.getRandomWord()
     this.wordleGame = new WordleGame(this.word)
+    this.saved = false
+    this.unsure = true
   }
 
   get gameResult() {
@@ -111,6 +146,49 @@ export default class Game extends Vue {
       return word.letters[index - 1]?.char ?? ''
     }
     return ''
+  }
+
+  toggleDialog() {
+    this.dialog = !this.dialog
+  }
+
+  changeName() {
+    localStorage.setItem('newName', this.name)
+    this.newName = localStorage.getItem('newName')
+    this.toggleDialog()
+  }
+
+  checkForName() {
+    this.saved = !this.saved
+    if (this.newName === 'Guest') {
+      this.toggleDialog()
+      this.toggleUnsure()
+    } else {
+      this.savePlayerStats()
+    }
+  }
+
+  areYouSure(){
+    this.savePlayerStats()
+    this.toggleUnsure()
+  }
+
+  savePlayerStats() {
+    this.$axios
+      .post('/api/Player', {
+        Name: this.newName,
+        Score: this.wordleGame.words.length,
+      })
+      .then(function (response) {
+        console.log(response)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+  }
+
+  toggleUnsure(){
+    this.unsure = !this.unsure
   }
 }
 </script>

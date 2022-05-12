@@ -31,7 +31,7 @@
         </v-simple-table>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="primary" @click="refreshPlayers"> Refresh </v-btn>
+        <v-btn color="primary" @click="refreshPlayers"> Get Top 10 </v-btn>
       </v-card-actions>
     </v-card>
   </v-container>
