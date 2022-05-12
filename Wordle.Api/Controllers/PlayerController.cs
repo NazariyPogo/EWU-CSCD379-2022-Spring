@@ -18,7 +18,7 @@ namespace Wordle.Api.Controllers
         [HttpGet]
         public IEnumerable<Player> Get()
         {
-            return _service.GetPlayers();
+            return _service.GetTenPlayers();
 
         }
 

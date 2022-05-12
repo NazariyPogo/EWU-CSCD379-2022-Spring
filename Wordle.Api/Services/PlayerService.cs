@@ -14,12 +14,7 @@ namespace Wordle.Api.Services
 
         public IEnumerable<Player> GetTenPlayers()
         {
-            var result = _context.Players.OrderBy(x => x.AverageAttempts).Take(10);
-            return result;
-        }
-        public IEnumerable<Player> GetPlayers()
-        {
-            var result = _context.Players.OrderBy(x => x.AverageAttempts);
+            var result = _context.Players.OrderBy(x => x.AverageAttempts).ThenByDescending(x => x.GameCount).Take(10);
             return result;
         }
 
@@ -33,7 +28,7 @@ namespace Wordle.Api.Services
 
             if (player is not null)
             {
-                player.AverageAttempts = (player.AverageAttempts * player.GameCount + score) / ++player.GameCount;
+                player.AverageAttempts = Math.Round(((player.AverageAttempts * player.GameCount + score) / ++player.GameCount)*100)/100;
             }
             else
             {
