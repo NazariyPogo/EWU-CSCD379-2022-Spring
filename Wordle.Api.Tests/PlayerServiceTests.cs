@@ -28,5 +28,15 @@ namespace Wordle.Api.Tests
 
             Assert.AreEqual(1, sut.GetTenPlayers().Count());
         }
+
+        [TestMethod]
+        public void UpdateAddGame()
+        {
+            PlayerService sut = new(_context);
+
+            sut.Update("First", 5);
+
+            Assert.AreEqual(115.0/101.0, sut.GetTenPlayers().First(x => x.Name == "First").AverageAttempts);
+        }
     }
 }
