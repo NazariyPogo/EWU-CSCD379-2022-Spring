@@ -1,6 +1,5 @@
-# wordle-web
-Link
-https://lemon-ground-09e5fcf1e.1.azurestaticapps.net
+# wordle-ad-farm
+
 ## Build Setup
 
 ```bash
