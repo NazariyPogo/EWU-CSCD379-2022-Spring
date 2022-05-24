@@ -73,7 +73,7 @@
           <v-img
             src="logo.jpeg"
             class="center"
-            style="width: 400px; height: 100px"
+            style="width: 400px; height: 100px  display: block; margin-left: auto;  margin-right: auto;  width: 100%;"
           />
         </v-col>
         <v-col cols="3">
