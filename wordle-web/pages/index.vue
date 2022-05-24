@@ -12,6 +12,11 @@
                 Play
               </v-btn>
             </v-card-actions>
+            <v-card-actions class="justify-center">
+              <v-btn nuxt to="/game" color="primary" x-large width="200px">
+                Word of the Day
+              </v-btn>
+            </v-card-actions>
           </v-card>
         </v-card>
       </v-col>
