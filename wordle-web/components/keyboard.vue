@@ -5,6 +5,8 @@
         <v-container class="text-center ma-0 pa-0">
           <v-btn
             class="pa-1 mx-3 my-1"
+            width="90%"
+            :min-width="30"
             elevation="8"
             :color="letterColor(char) == '' ? 'info' : letterColor(char)"
             style="
@@ -28,7 +30,7 @@
       <v-col cols="2">
         <v-btn
           :disabled="wordleGame.gameOver"
-          class="float-left pa-1 ml-3"
+          class="float-left pa-1 ml-1 ml-sm-3"
           @click="guessWord"
         >
           Guess
