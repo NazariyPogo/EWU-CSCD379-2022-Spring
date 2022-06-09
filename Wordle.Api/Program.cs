@@ -88,6 +88,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy(Policies.RandomAdmin, Policies.RandomAdminPolicy);
+    options.AddPolicy(Policies.OldEnough, Policies.IsOldEnoughPolicy);
     options.AddPolicy("IsGrantPolicy", policy => policy.RequireRole("Grant"));
 });
 

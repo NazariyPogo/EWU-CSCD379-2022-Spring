@@ -51,6 +51,7 @@ public class TokenController : Controller
                 new Claim("UserId", user.Id.ToString()),
                 new Claim(Claims.Random, (new Random()).NextDouble().ToString()),
                 new Claim(Claims.UserName, user.UserName.ToString().Substring(0,user.UserName.ToString().IndexOf("@"))),
+                new Claim(Claims.DOB, user.DOB),
             };
             var roles = await _userManager.GetRolesAsync(user);
             foreach (var role in roles)
@@ -86,10 +87,10 @@ public class TokenController : Controller
     }
 
     [HttpGet("testruleroftheuniverse")]
-    [Authorize(Roles="RulerOfTheUniverse,Meg")]
+    [Authorize(Roles="MasterOfTheUniverse,Meg")]
     public string TestRulerOfTheUniverseOrMeg()
     {
-        return "Authorized as Ruler of the Universe or Meg";
+        return $"Authorized as Master of the Universe or Meg with a DOB of {User.Identities.First().Claims.First(x => x.Type == Claims.DOB).Value}";
     }
 
     [HttpGet("testrandomadmin")]
@@ -97,6 +98,13 @@ public class TokenController : Controller
     public string TestRandomAdmin()
     {
         return $"Authorized randomly as Random Admin with {User.Identities.First().Claims.First(c => c.Type == Claims.Random).Value}";
+    }
+
+    [HttpGet("testAge")]
+    [Authorize(Roles="MasterOfTheUniverse", Policy = Policies.OldEnough)]
+    public string TestOldEnough()
+    {
+        return $"Authorized as an old Master of the Universe with a DOB of {User.Identities.First().Claims.First(x => x.Type == Claims.DOB).Value}";
     }
 
 }
