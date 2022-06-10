@@ -18,9 +18,9 @@
             </v-text-field>
           </v-col>
           <v-col>
-            <v-btn 
+            <v-btn  @click="addWord"
             :justify="right"> 
-              Add Word @click="addWord" 
+              Add Word 
             </v-btn>
           </v-col>
         </v-row>
