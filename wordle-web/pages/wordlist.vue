@@ -14,13 +14,13 @@
         </v-row>
         <v-row>
           <v-col :cols=9>
-            <v-text-field label="New Word">
+            <v-text-field label="New Word" v-model="newWord">
             </v-text-field>
           </v-col>
           <v-col>
             <v-btn 
             :justify="right"> 
-              Add Word 
+              Add Word @click="addWord" 
             </v-btn>
           </v-col>
         </v-row>
@@ -62,15 +62,22 @@ import { Component, Vue } from 'vue-property-decorator'
 @Component({})
 export default class wordlist extends Vue {
   words: any = []
-  title: string = ''
   wordPerPage = 50
   numberOfPages = 20
+  newWord = ''
 
   mounted() {
     this.$axios.get('/api/Words').then((response) => {
       this.words = response.data
     })
     this.numberOfPages = Math.round(this.words.length / this.numberOfPages)
+  }
+
+  addWord() {
+        this.$axios.post('/api/Words', {
+      value: this.newWord,
+      common: false,
+    })
   }
 }
 </script>
