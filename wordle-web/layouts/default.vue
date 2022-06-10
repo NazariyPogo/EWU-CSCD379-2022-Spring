@@ -45,6 +45,12 @@
         </v-list-item>
 
         <v-list-item>
+          <v-btn text block nuxt to="/wordlist">
+            Word List <v-icon>mdi-equalizer</v-icon>
+          </v-btn>
+        </v-list-item>        
+
+        <v-list-item>
           <v-btn text block>
             <SettingsDialog />
           </v-btn>
