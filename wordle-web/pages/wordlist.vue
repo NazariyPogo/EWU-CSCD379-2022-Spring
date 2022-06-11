@@ -35,7 +35,12 @@
           <tbody>
             <tr v-for="(word, index) in words" :key="index">
               <td>{{ word.value }}</td>
-              <td style="text-align: center">{{ word.common }}</td>
+              <td style="text-align: center">
+                <v-checkbox
+                  v-model="word.common"
+                  @click="toggleCommonWord(word.value, word.common)"
+                ></v-checkbox>
+              </td>
               <td style="text-align: center">
                 <v-btn color="primary">
                   Delete
@@ -47,10 +52,9 @@
       </v-card-text>
       <v-card-actions>
         <v-pagination
-          v-model="currentPage"
+          v-model="page"
           :length="numberOfPages"
-          @input="nextPage" >
-        </v-pagination>
+        > </v-pagination>
       </v-card-actions>
     </v-card>
   </v-container>
@@ -65,6 +69,8 @@ export default class wordlist extends Vue {
   wordPerPage = 50
   numberOfPages = 20
   newWord = ''
+  page = 1
+
 
   mounted() {
     this.$axios.get('/api/Words').then((response) => {
@@ -74,9 +80,16 @@ export default class wordlist extends Vue {
   }
 
   addWord() {
-        this.$axios.post('/api/Words', {
+    this.$axios.post('/api/Words/AddWord', {
       value: this.newWord,
       common: false,
+    })
+  }
+
+  toggleCommonWord(word:string, common:boolean) {
+    this.$axios.post('/api/Words/SetCommon', {
+      value: word,
+      common: !common,
     })
   }
 }
