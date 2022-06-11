@@ -31,7 +31,7 @@ namespace Wordle.Api.Controllers
             return BadRequest("Word already exists");
         }
 
-        [HttpDelete("RemoveWord")]
+        [HttpPost("RemoveWord")]
         public ActionResult DeleteWord(string word)
         {
             if (_service.DeleteWord(word) == true)
@@ -41,20 +41,10 @@ namespace Wordle.Api.Controllers
             return BadRequest("Word does not exist");
         }
 
-        [HttpPost("ChangeFlagCommon")]
-        public ActionResult ChangeFlagCommon(string word)
+        [HttpPost("ChangeFlag")]
+        public ActionResult ChangeFlag(WordData wordData)
         {
-            if (_service.MakeWordCommon(word) == true)
-            {
-                return Ok("Flag has been changed successfully");
-            }
-            return BadRequest("Error, flag could not be changed");
-        }
-
-        [HttpPost("ChangeFlagUncommon")]
-        public ActionResult ChangeFlagUncommon(string word)
-        {
-            if (_service.MakeWordUncommon(word) == true)
+            if (_service.ChangeFlag(wordData) == true)
             {
                 return Ok("Flag has been changed successfully");
             }

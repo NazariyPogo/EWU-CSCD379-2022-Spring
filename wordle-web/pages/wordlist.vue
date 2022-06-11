@@ -73,29 +73,29 @@ export default class wordlist extends Vue {
 
 
   mounted() {
-    this.$axios.get('/api/Words').then((response) => {
+    this.$axios.get('/Word/GetList').then((response) => {
       this.words = response.data
     })
     this.numberOfPages = Math.round(this.words.length / this.numberOfPages)
   }
 
   addWord() {
-    this.$axios.post('/api/Words/AddWord', {
+    this.$axios.post('/Word/AddWord', {
       value: this.newWord,
       common: false,
     })
   }
 
   deleteWord(word:string) {
-    this.$axios.post('/api/Words/DeleteWord', {
+    this.$axios.post('/Word/RemoveWord', {
       value: word,
     })
   }
 
   toggleCommonWord(word:string, common:boolean) {
-    this.$axios.post('/api/Words/SetCommon', {
+    this.$axios.post('/Word/ChangeFlag', {
       value: word,
-      common: !common,
+      common: common,
     })
   }
 }

@@ -45,26 +45,12 @@ namespace Wordle.Api.Services
             return false;
         }
 
-        public bool MakeWordCommon(string word)
+        public bool ChangeFlag(WordData wordData)
         {
-            var dbWord = _context.Words.FirstOrDefault(x => x.Value.Equals(word));
-            if (dbWord is not null && dbWord.Common == false)
+            var dbWord = _context.Words.FirstOrDefault(x => x.Value.Equals(wordData.Value));
+            if (dbWord is not null)
             {
-                dbWord.Common = true;
-
-                _context.Words.Update(dbWord);
-                _context.SaveChanges();
-                return true;
-            }
-            return false;
-        }
-
-        public bool MakeWordUncommon(string word)
-        {
-            var dbWord = _context.Words.FirstOrDefault(x => x.Value.Equals(word));
-            if (dbWord is not null && dbWord.Common == true)
-            {
-                dbWord.Common = false;
+                dbWord.Common = wordData.Common;
 
                 _context.Words.Update(dbWord);
                 _context.SaveChanges();
