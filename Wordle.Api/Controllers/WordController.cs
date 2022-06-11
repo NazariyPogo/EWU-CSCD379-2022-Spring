@@ -4,7 +4,9 @@ using Wordle.Api.Services;
 
 namespace Wordle.Api.Controllers
 {
-    public class WordController : Controller
+    [Route("/[controller]")]
+    [ApiController]
+    public class WordController : ControllerBase
     {
         private readonly WordService _service;
 
@@ -13,28 +15,61 @@ namespace Wordle.Api.Controllers
             _service = service;
         }
 
-        [HttpGet]
+        [HttpGet("GetList")]
         public IEnumerable<Word> GetWords()
         {
             return _service.GetWords();
         }
 
-        [HttpPost]
-        public void AddWord(string word)
+        [HttpPost("AddWord")]
+        public ActionResult AddWord([FromBody] WordData wordData)
         {
-            _service.AddWord(word);
+            if (_service.AddWord(wordData) == true)
+            {
+                return Ok("Word has been added successfully");
+            }
+            return BadRequest("Word already exists");
         }
 
-        [HttpDelete]
-        public void DeleteWord(string word)
+        [HttpDelete("RemoveWord")]
+        public ActionResult DeleteWord(string word)
         {
-            _service.DeleteWord(word);
+            if (_service.DeleteWord(word) == true)
+            {
+                return Ok("Word has been removed successfully");
+            }
+            return BadRequest("Word does not exist");
         }
 
-        [HttpPost]
-        public void ChangeCommonFlag(string word)
+        [HttpPost("ChangeFlagCommon")]
+        public ActionResult ChangeFlagCommon(string word)
         {
-            _service.ChangeFlag(word);
+            if (_service.MakeWordCommon(word) == true)
+            {
+                return Ok("Flag has been changed successfully");
+            }
+            return BadRequest("Error, flag could not be changed");
+        }
+
+        [HttpPost("ChangeFlagUncommon")]
+        public ActionResult ChangeFlagUncommon(string word)
+        {
+            if (_service.MakeWordUncommon(word) == true)
+            {
+                return Ok("Flag has been changed successfully");
+            }
+            return BadRequest("Error, flag could not be changed");
+        }
+    }
+
+    public class WordData
+    {
+        public string Value { get; set; }
+        public bool Common { get; set; }
+        public WordData(string value, bool common)
+        {
+            Value = value;
+            Common = common;
         }
     }
 }
