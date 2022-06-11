@@ -23,19 +23,19 @@
           </v-list-item-title>
         </v-list-item>
         <v-list-item>
-          <v-btn text block nuxt to="/"> Home <v-icon>mdi-home</v-icon></v-btn>
+          <v-btn text block nuxt to="/"> Home <v-icon>mdi-home</v-icon> </v-btn>
         </v-list-item>
 
         <v-list-item>
           <v-btn text block nuxt to="/game">
-            Play <v-icon>mdi-controller-classic</v-icon></v-btn
-          >
+            Play <v-icon>mdi-controller-classic</v-icon>
+          </v-btn>
         </v-list-item>
 
         <v-list-item>
           <v-btn text block nuxt to="/about">
-            About <v-icon>mdi-help-circle</v-icon></v-btn
-          >
+            About <v-icon>mdi-help-circle</v-icon>
+          </v-btn>
         </v-list-item>
 
         <v-list-item>
@@ -46,9 +46,15 @@
 
         <v-list-item>
           <v-btn text block nuxt to="/wordlist">
-            Word List <v-icon>mdi-equalizer</v-icon>
+            Word List <v-icon>mdi-format-list-bulleted</v-icon>
           </v-btn>
-        </v-list-item>        
+        </v-list-item>
+
+        <v-list-item>
+          <v-btn text block nuxt to="/login">
+            Login <v-icon>mdi-login-variant</v-icon>
+          </v-btn>
+        </v-list-item>
 
         <v-list-item>
           <v-btn text block>

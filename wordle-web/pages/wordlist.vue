@@ -1,27 +1,20 @@
 <template>
   <v-container fluid fill-height justify-center>
     <v-card width="65%">
-      <v-card-title class="display-3 justify-center">
-        Word List
-      </v-card-title>
+      <v-card-title class="display-3 justify-center"> Word List </v-card-title>
       <v-card-text class="text-center">
         {{ title }}
       </v-card-text>
       <v-card-text>
         <v-row>
-          <v-text-field label="Search Words">
-          </v-text-field>
+          <v-text-field label="Search Words"> </v-text-field>
         </v-row>
         <v-row>
-          <v-col :cols=9>
-            <v-text-field label="New Word" v-model="newWord">
-            </v-text-field>
+          <v-col :cols="9">
+            <v-text-field v-model="newWord" label="New Word"> </v-text-field>
           </v-col>
           <v-col>
-            <v-btn  @click="addWord"
-            :justify="right"> 
-              Add Word 
-            </v-btn>
+            <v-btn :justify="right" @click="addWord"> Add Word </v-btn>
           </v-col>
         </v-row>
         <v-simple-table>
@@ -51,10 +44,7 @@
         </v-simple-table>
       </v-card-text>
       <v-card-actions>
-        <v-pagination
-          v-model="page"
-          :length="numberOfPages"
-        > </v-pagination>
+        <v-pagination v-model="page" :length="numberOfPages"> </v-pagination>
       </v-card-actions>
     </v-card>
   </v-container>
@@ -71,7 +61,6 @@ export default class wordlist extends Vue {
   newWord = ''
   page = 1
 
-
   mounted() {
     this.$axios.get('/Word/GetList').then((response) => {
       this.words = response.data
@@ -86,16 +75,16 @@ export default class wordlist extends Vue {
     })
   }
 
-  deleteWord(word:string) {
+  deleteWord(word: string) {
     this.$axios.post('/Word/RemoveWord', {
       value: word,
     })
   }
 
-  toggleCommonWord(word:string, common:boolean) {
+  toggleCommonWord(word: string, common: boolean) {
     this.$axios.post('/Word/ChangeFlag', {
       value: word,
-      common: common,
+      common,
     })
   }
 }
