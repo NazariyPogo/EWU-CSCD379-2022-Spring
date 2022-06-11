@@ -68,7 +68,6 @@ jobs:
   deploy:
     runs-on: windows-latest
     needs: build
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
