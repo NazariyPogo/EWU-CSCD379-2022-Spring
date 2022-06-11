@@ -28,7 +28,7 @@ public static class Policies
             DateTime youngestDob = new DateTime(DateTime.Now.Year - 21, DateTime.Now.Month, DateTime.Now.Day);
             var usersDob = context.User.Claims.FirstOrDefault(x => x.Type == Claims.DOB);
 
-            if (usersDob != null) { return false; }
+            if (usersDob == null) { return false; }
 
             if(Convert.ToDateTime(usersDob.Value).CompareTo(youngestDob) < 0)
             {
