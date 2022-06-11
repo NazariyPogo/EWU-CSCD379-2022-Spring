@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Wordle.Api.Data;
+using Wordle.Api.Identity;
 using Wordle.Api.Services;
 
 namespace Wordle.Api.Controllers
@@ -22,6 +24,7 @@ namespace Wordle.Api.Controllers
         }
 
         [HttpPost("AddWord")]
+        [Authorize(Roles = Roles.MasterOfTheUniverse, Policy = Policies.OldEnough)]
         public ActionResult AddWord([FromBody] WordData wordData)
         {
             if (_service.AddWord(wordData) == true)
@@ -32,6 +35,7 @@ namespace Wordle.Api.Controllers
         }
 
         [HttpPost("RemoveWord")]
+        [Authorize(Roles = Roles.MasterOfTheUniverse, Policy = Policies.OldEnough)]
         public ActionResult DeleteWord(string word)
         {
             if (_service.DeleteWord(word) == true)
@@ -42,6 +46,7 @@ namespace Wordle.Api.Controllers
         }
 
         [HttpPost("ChangeFlag")]
+        [Authorize]
         public ActionResult ChangeFlag(WordData wordData)
         {
             if (_service.ChangeFlag(wordData) == true)
