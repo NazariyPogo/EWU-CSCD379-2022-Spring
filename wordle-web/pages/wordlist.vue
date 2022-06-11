@@ -42,7 +42,7 @@
                 ></v-checkbox>
               </td>
               <td style="text-align: center">
-                <v-btn color="primary">
+                <v-btn color="primary" @click="deleteWord(word.value)">
                   Delete
                 </v-btn>
               </td>
@@ -83,6 +83,12 @@ export default class wordlist extends Vue {
     this.$axios.post('/api/Words/AddWord', {
       value: this.newWord,
       common: false,
+    })
+  }
+
+  deleteWord(word:string) {
+    this.$axios.post('/api/Words/DeleteWord', {
+      value: word,
     })
   }
 
