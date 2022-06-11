@@ -45,7 +45,7 @@ namespace Wordle.Api.Identity
             // Seed Admin User
             if (await userManager.FindByNameAsync("Admin@intellitect.com") == null)
             {
-                AppUser user = new AppUser
+                AppUser user = new()
                 {
                     UserName = "Admin@intellitect.com",
                     Email = "Admin@intellitect.com",
@@ -67,7 +67,7 @@ namespace Wordle.Api.Identity
             // Seed Of-Age Master User
             if (await userManager.FindByNameAsync("Master@intellitect.com") == null)
             {
-                AppUser user = new AppUser
+                AppUser user = new()
                 {
                     UserName = "Master@intellitect.com",
                     Email = "Master@intellitect.com",
@@ -88,7 +88,7 @@ namespace Wordle.Api.Identity
             // Seed Young Master User
             if (await userManager.FindByNameAsync("Young@intellitect.com") == null)
             {
-                AppUser user = new AppUser
+                AppUser user = new()
                 {
                     UserName = "Young@intellitect.com",
                     Email = "Young@intellitect.com",
@@ -109,7 +109,7 @@ namespace Wordle.Api.Identity
             // Seed Normie User
             if (await userManager.FindByNameAsync("User@intellitect.com") == null)
             {
-                AppUser user = new AppUser
+                AppUser user = new()
                 {
                     UserName = "User@intellitect.com",
                     Email = "User@intellitect.com",

@@ -50,7 +50,7 @@ public class TokenController : Controller
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim("UserId", user.Id.ToString()),
                 new Claim(Claims.Random, (new Random()).NextDouble().ToString()),
-                new Claim(Claims.UserName, user.UserName.ToString().Substring(0,user.UserName.ToString().IndexOf("@"))),
+                new Claim(Claims.UserName, user.UserName.ToString()[..user.UserName.ToString().IndexOf("@")]),
                 new Claim(Claims.DOB, user.DOB),
             };
             var roles = await _userManager.GetRolesAsync(user);
