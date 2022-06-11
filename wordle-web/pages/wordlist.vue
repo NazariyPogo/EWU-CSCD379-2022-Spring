@@ -62,9 +62,7 @@ export default class wordlist extends Vue {
   page = 1
 
   mounted() {
-    this.$axios.get('/Word/GetList').then((response) => {
-      this.words = response.data
-    })
+    this.updateList()
     this.numberOfPages = Math.round(this.words.length / this.numberOfPages)
   }
 
@@ -73,18 +71,26 @@ export default class wordlist extends Vue {
       value: this.newWord,
       common: false,
     })
+    .then(this.updateList)
   }
 
   deleteWord(word: string) {
-    this.$axios.post('/Word/RemoveWord', {
-      value: word,
+    this.$axios.post('/Word/RemoveWord', null, {
+      params: { word: word}
     })
+    .then(this.updateList)
   }
 
   toggleCommonWord(word: string, common: boolean) {
     this.$axios.post('/Word/ChangeFlag', {
       value: word,
       common,
+    })
+  }
+
+  updateList() {
+    this.$axios.get('/Word/GetList').then((response) => {
+      this.words = response.data
     })
   }
 }
