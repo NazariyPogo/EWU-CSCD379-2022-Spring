@@ -31,7 +31,7 @@ namespace Wordle.Api.Controllers
             {
                 return Ok("Word has been added successfully");
             }
-            return BadRequest("Word already exists");
+            return BadRequest("Word is invalid or already exists");
         }
 
         [HttpPost("RemoveWord")]

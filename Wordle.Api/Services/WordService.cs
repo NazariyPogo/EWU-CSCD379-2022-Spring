@@ -24,7 +24,7 @@ namespace Wordle.Api.Services
         public bool AddWord(WordData wordData)
         {
             var dbWord = _context.Words.FirstOrDefault(x => x.Value.Equals(wordData.Value));
-            if (dbWord is null)
+            if (dbWord is not null && dbWord.Value.Length != 5 && dbWord.Value.Any(x => char.IsDigit(x)))
             {
                 _context.Words.Add(new Word { Value = wordData.Value, Common = wordData.Common.ToString().ToUpper() == "TRUE" });
                 _context.SaveChanges();
