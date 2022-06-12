@@ -28,9 +28,10 @@
 </template>
 
 <script lang="ts">
-import { Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 import { JWT } from '~/scripts/jwt'
 
+@Component({})
 export default class Login extends Vue {
   email: string = ''
   password: string = ''
