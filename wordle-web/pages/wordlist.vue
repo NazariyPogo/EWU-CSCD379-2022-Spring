@@ -2,9 +2,6 @@
   <v-container fluid fill-height justify-center>
     <v-card width="65%">
       <v-card-title class="display-3 justify-center"> Word List </v-card-title>
-      <v-card-text class="text-center">
-        {{ title }}
-      </v-card-text>
       <v-card-text>
         <v-row>
           <v-text-field label="Search Words"> </v-text-field>
@@ -14,7 +11,7 @@
             <v-text-field v-model="newWord" label="New Word"> </v-text-field>
           </v-col>
           <v-col>
-            <v-btn :justify="right" @click="addWord"> Add Word </v-btn>
+            <v-btn @click="addWord"> Add Word </v-btn>
           </v-col>
         </v-row>
         <v-simple-table>
@@ -29,10 +26,7 @@
             <tr v-for="(word, index) in words" :key="index">
               <td>{{ word.value }}</td>
               <td style="text-align: center">
-                <v-checkbox
-                  v-model="word.common"
-                  @click="toggleCommonWord(word.value, word.common)"
-                ></v-checkbox>
+                <v-checkbox v-model="word.common" @click="toggleCommonWord(word.value, word.common)"></v-checkbox>
               </td>
               <td style="text-align: center">
                 <v-btn color="primary" @click="deleteWord(word.value)">
@@ -43,9 +37,11 @@
           </tbody>
         </v-simple-table>
       </v-card-text>
-      <v-card-actions>
-        <v-pagination v-model="page" :length="numberOfPages"> </v-pagination>
-      </v-card-actions>
+      <template>
+        <div>
+          <v-pagination v-model="page" :length="numberOfPages" @input="updateList()"> </v-pagination>
+        </div>
+      </template>
     </v-card>
   </v-container>
 </template>
@@ -56,14 +52,15 @@ import { Component, Vue } from 'vue-property-decorator'
 @Component({})
 export default class wordlist extends Vue {
   words: any = []
+  listSize = 1
   wordPerPage = 50
-  numberOfPages = 20
+  numberOfPages = 10
   newWord = ''
   page = 1
 
   mounted() {
+
     this.updateList()
-    this.numberOfPages = Math.round(this.words.length / this.numberOfPages)
   }
 
   addWord() {
@@ -71,14 +68,14 @@ export default class wordlist extends Vue {
       value: this.newWord,
       common: false,
     })
-    .then(this.updateList)
+      .then(this.updateList)
   }
 
   deleteWord(word: string) {
     this.$axios.post('/Word/RemoveWord', null, {
-      params: { word: word}
+      params: { word: word }
     })
-    .then(this.updateList)
+      .then(this.updateList)
   }
 
   toggleCommonWord(word: string, common: boolean) {
@@ -89,9 +86,24 @@ export default class wordlist extends Vue {
   }
 
   updateList() {
-    this.$axios.get('/Word/GetList').then((response) => {
-      this.words = response.data
+    this.$axios.get('/Word/GetList', {
+      params: {
+        pageNum: this.page,
+        pageSize: this.wordPerPage
+      }
     })
+      .then(res => this.words = res.data)
+      .then(this.getListSize)
+  }
+
+  getListSize(){
+        this.$axios.get('/Word/GetListSize')
+      .then(res => this.listSize = res.data)
+      .then(this.setPageSize)
+  }
+
+  setPageSize() {
+    this.numberOfPages = Math.ceil(this.listSize / this.wordPerPage)
   }
 }
 </script>

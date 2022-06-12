@@ -18,9 +18,9 @@ namespace Wordle.Api.Controllers
         }
 
         [HttpGet("GetList")]
-        public IEnumerable<Word> GetWords()
+        public IEnumerable<Word> GetWords(int pageNum, int pageSize)
         {
-            return _service.GetWords();
+            return _service.GetWords(pageNum, pageSize);
         }
 
         [HttpPost("AddWord")]
@@ -54,6 +54,12 @@ namespace Wordle.Api.Controllers
                 return Ok("Flag has been changed successfully");
             }
             return BadRequest("Error, flag could not be changed");
+        }
+
+        [HttpGet("GetListSize")]
+        public int GetListSize()
+        {
+            return _service.GetListSize();
         }
     }
 

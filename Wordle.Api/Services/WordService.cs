@@ -12,11 +12,16 @@ namespace Wordle.Api.Services
         {
             _context = context;
         }
-        public IEnumerable<Word> GetWords()
+        public IEnumerable<Word> GetWords(int pageNum, int pageSize)
         {
+            if(pageNum < 1 || pageSize < 1)
+            {
+                return Enumerable.Empty<Word>();
+            }
             List<Word> words = _context.Words
                 .OrderBy(x => x.Value)
-                .Take(100)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize)
                 .ToList();
             return words;
         }
@@ -24,7 +29,7 @@ namespace Wordle.Api.Services
         public bool AddWord(WordData wordData)
         {
             var dbWord = _context.Words.FirstOrDefault(x => x.Value.Equals(wordData.Value));
-            if (dbWord is not null && dbWord.Value.Length != 5 && dbWord.Value.Any(x => char.IsDigit(x)))
+            if (dbWord is null && wordData.Value.Length == 5 && !wordData.Value.Any(x => char.IsDigit(x)))
             {
                 _context.Words.Add(new Word { Value = wordData.Value, Common = wordData.Common.ToString().ToUpper() == "TRUE" });
                 _context.SaveChanges();
@@ -57,6 +62,11 @@ namespace Wordle.Api.Services
                 return true;
             }
             return false;
+        }
+
+        public int GetListSize()
+        {
+            return _context.Words.Count();
         }
     }
 }
