@@ -4,7 +4,7 @@
       <v-card-title class="display-3 justify-center"> Word List </v-card-title>
       <v-card-text>
         <v-row>
-          <v-text-field label="Search Words"> </v-text-field>
+          <v-text-field v-model="search" label="Search Words" @input="updateList()"> </v-text-field>
         </v-row>
         <v-row>
           <v-col :cols="9">
@@ -39,7 +39,7 @@
       </v-card-text>
       <template>
         <div>
-          <v-pagination v-model="page" :length="numberOfPages" @input="updateList()"> </v-pagination>
+          <v-pagination circle v-model="page" :length="numberOfPages" @input="updateList()"> </v-pagination>
         </div>
       </template>
     </v-card>
@@ -57,6 +57,7 @@ export default class wordlist extends Vue {
   numberOfPages = 10
   newWord = ''
   page = 1
+  search = ''
 
   mounted() {
 
@@ -86,23 +87,47 @@ export default class wordlist extends Vue {
   }
 
   updateList() {
-    this.$axios.get('/Word/GetList', {
-      params: {
-        pageNum: this.page,
-        pageSize: this.wordPerPage
-      }
-    })
-      .then(res => this.words = res.data)
-      .then(this.getListSize)
+    if (this.search === '') {
+      this.$axios.get('/Word/GetList', {
+        params: {
+          pageNum: this.page,
+          pageSize: this.wordPerPage,
+        }
+      })
+        .then(res => this.words = res.data)
+        .then(this.getListSize)
+    }
+    else {
+      this.$axios.get('/Word/GetFilteredList', {
+        params: {
+          pageNum: this.page,
+          pageSize: this.wordPerPage,
+          filter: this.search
+        }
+      })
+        .then(res => this.words = res.data)
+        .then(this.getListSize)
+    }
   }
 
-  getListSize(){
-        this.$axios.get('/Word/GetListSize')
-      .then(res => this.listSize = res.data)
-      .then(this.setPageSize)
+  getListSize() {
+    if (this.search === '') {
+      this.$axios.get('/Word/GetListSize')
+        .then(res => this.listSize = res.data)
+        .then(this.setPageNumber)
+    }
+    else {
+      this.$axios.get('/Word/GetFilteredListSize', {
+        params: {
+          filter: this.search
+        }
+      })
+        .then(res => this.listSize = res.data)
+        .then(this.setPageNumber)
+    }
   }
 
-  setPageSize() {
+  setPageNumber() {
     this.numberOfPages = Math.ceil(this.listSize / this.wordPerPage)
   }
 }

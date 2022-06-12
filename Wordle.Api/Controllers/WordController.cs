@@ -23,6 +23,12 @@ namespace Wordle.Api.Controllers
             return _service.GetWords(pageNum, pageSize);
         }
 
+        [HttpGet("GetFilteredList")]
+        public IEnumerable<Word> GetFilteredWords(int pageNum, int pageSize, string filter)
+        {
+            return _service.GetFilteredWords(pageNum, pageSize, filter);
+        }
+
         [HttpPost("AddWord")]
         [Authorize(Roles = Roles.MasterOfTheUniverse, Policy = Policies.OldEnough)]
         public ActionResult AddWord([FromBody] WordData wordData)
@@ -60,6 +66,12 @@ namespace Wordle.Api.Controllers
         public int GetListSize()
         {
             return _service.GetListSize();
+        }
+
+        [HttpGet("GetFilteredListSize")]
+        public int GetFilteredListSize(string filter)
+        {
+            return _service.GetFilteredListSize(filter);
         }
     }
 

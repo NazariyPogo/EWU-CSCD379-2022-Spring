@@ -14,11 +14,22 @@ namespace Wordle.Api.Services
         }
         public IEnumerable<Word> GetWords(int pageNum, int pageSize)
         {
-            if(pageNum < 1 || pageSize < 1)
+            List<Word> words = _context.Words
+                .OrderBy(x => x.Value)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+            return words;
+        }
+
+        public IEnumerable<Word> GetFilteredWords(int pageNum, int pageSize, string filter)
+        {
+            if (pageNum < 1 || pageSize < 1)
             {
                 return Enumerable.Empty<Word>();
             }
             List<Word> words = _context.Words
+                .Where(x => x.Value.Contains(filter))
                 .OrderBy(x => x.Value)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize)
@@ -67,6 +78,11 @@ namespace Wordle.Api.Services
         public int GetListSize()
         {
             return _context.Words.Count();
+        }
+
+        public int GetFilteredListSize(string filter)
+        {
+            return _context.Words.Where(x => x.Value.Contains(filter)).Count();
         }
     }
 }
