@@ -2,28 +2,26 @@
   <v-container fluid fill-height>
     <v-container>
       <v-form>
-        <v-container>
-          <v-card>
-            <v-card-title>Login</v-card-title>
-            <v-row>
-              <v-col cols="12" md="4">
-                <v-text-field v-model="email" label="Email" required>
-                </v-text-field>
-              </v-col>
+        <v-card>
+          <v-card-title>Login</v-card-title>
+          <v-row>
+            <v-col cols="12" md="4">
+              <v-text-field v-model="email" label="Email" required>
+              </v-text-field>
+            </v-col>
 
-              <v-col cols="12" md="4">
-                <v-text-field
-                  v-model="password"
-                  label="Password"
-                  required
-                ></v-text-field>
-              </v-col>
-            </v-row>
-            <v-card-actions>
-              <v-btn @click="signIn()"> Login </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-container>
+            <v-col cols="12" md="4">
+              <v-text-field
+                v-model="password"
+                label="Password"
+                required
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-card-actions>
+            <v-btn @click="signIn()"> Login </v-btn>
+          </v-card-actions>
+        </v-card>
       </v-form>
     </v-container>
   </v-container>
