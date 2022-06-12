@@ -32,7 +32,6 @@ import { Vue } from 'vue-property-decorator'
 import { JWT } from '~/scripts/jwt'
 
 export default class Login extends Vue {
-  name = 'Login'
   email: string = ''
   password: string = ''
 
