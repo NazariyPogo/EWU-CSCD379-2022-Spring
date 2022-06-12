@@ -7,7 +7,7 @@
           <v-text-field
             v-model="search"
             label="Search Words"
-            @input="updateList()"
+            @input="applyFilter()"
           >
           </v-text-field>
         </v-row>
@@ -146,6 +146,11 @@ export default class wordlist extends Vue {
 
   setPageNumber() {
     this.numberOfPages = Math.ceil(this.listSize / this.wordPerPage)
+  }
+
+  applyFilter(){
+    this.page = 1
+    this.updateList()
   }
 }
 </script>
